@@ -7,8 +7,9 @@ public class Main {
         myArray.insert(20);
         myArray.insert(30);
         myArray.insert(40);
-        myArray.removeAt(4);
+//        myArray.removeAt(1);
 //        System.out.println(myArray.indexOf(100));
+        System.out.println(myArray.get(2));
         myArray.print();
     }
 }

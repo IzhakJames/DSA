@@ -8,6 +8,7 @@ public class MyArray {
         array = new int[size];
     }
 
+    // O(n)
     public void insert(int value){
         if (position == array.length) {
             int[] newArray = new int[position*2];
@@ -24,6 +25,7 @@ public class MyArray {
         }
     }
 
+    // O(n)
     public void removeAt(int index){
         if (index >= position || index < 0) {
             throw new ArrayIndexOutOfBoundsException();
@@ -36,6 +38,7 @@ public class MyArray {
         }
     }
 
+    // O(n)
     public int indexOf(int value){
         for (int i = 0; i < position; i++) {
             if (array[i] == value) {
@@ -43,5 +46,10 @@ public class MyArray {
             }
         }
         return -1;
+    }
+
+    // O(1)
+    public int get(int index){
+        return array[index];
     }
 }
