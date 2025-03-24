@@ -52,4 +52,65 @@ public class MyArray {
     public int get(int index){
         return array[index];
     }
+
+    // O(n)
+    public int getMax() {
+        int max = array[0];
+        for (int i = 1; i < position; i++) {
+            if (max < array[i]) {
+                max = array[i];
+            }
+        }
+        return max;
+    }
+
+    // O(n)
+    public int getMin() {
+        int min = array[0];
+        for (int i = 1; i < position; i++) {
+            if (min > array[i]) {
+                min = array[i];
+            }
+        }
+        return min;
+    }
+
+    // O(n)
+    public void reverse() {
+        int[] newArray = new int[array.length];
+        int count = 0;
+        for (int i = position-1; i >= 0; i--) {
+            newArray[count++] = array[i];
+        }
+        array = newArray;
+    }
+
+    // O(n)
+    public void insertAt(int index, int value) {
+        if (index > position || index < 0) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        if (position == array.length) {
+            int[] newArray = new int[position*2];
+            // Using system.arraycopy method instead of doing manual copy
+            System.arraycopy(array, 0, newArray, 0, array.length);
+            array = newArray;
+        }
+        // shift all values from index to the right
+        for (int i = position; i > index; i--) {
+            array[i] = array[i-1];
+        }
+        array[index] = value;
+        position++;
+
+    }
+
+
+    public void intersect(MyArray other){
+        for (int i = 0; i < position; i++) {
+            if (other.indexOf(array[i]) >= 0) {
+                System.out.println(array[i]);
+            }
+        }
+    }
 }
