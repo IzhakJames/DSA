@@ -1,5 +1,17 @@
 package Linear;
 
+/*
+ * ArrayList Operations Complexity:
+ *
+ * get()      -> O(1)
+ * set()      -> O(1) replace an element with another
+ * add()      -> O(1) amortized, O(n) worst-case (when resizing occurs)
+ * insert()   -> O(n) (elements need to be shifted)
+ * remove()   -> O(n) (elements need to be shifted)
+ * indexOf()  -> O(n) (linear search)
+ * iterate()  -> O(n)
+ * size()     -> O(1)
+ */
 public class MyArray {
     private int[] array;
     private int position=0;
