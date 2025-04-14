@@ -4,8 +4,8 @@ import Linear.MyLinkedList;
 public class Main {
     public static void main(String[] args) {
         MyLinkedList list = new MyLinkedList();
-        list.addLast(1);
         list.addLast(2);
+        list.addFirst(1);
         list.addLast(3);
         list.addLast(4);
         list.addLast(5);
@@ -13,5 +13,6 @@ public class Main {
         int index = list.indexOf(1);
         list.deleteFirst();
         list.deleteLast();
+
     }
 }

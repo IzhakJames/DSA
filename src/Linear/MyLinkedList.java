@@ -29,6 +29,7 @@ public class MyLinkedList {
 
     private Node first;
     private Node last;
+    private int size;
 
     public int getFirst() {
         return first.value;
@@ -46,6 +47,7 @@ public class MyLinkedList {
         } else {
             newNode.next = this.first;
             this.first = newNode;
+            size++;
         }
 
     }
@@ -58,6 +60,7 @@ public class MyLinkedList {
             this.last.next = newNode;
         }
         this.last = newNode;
+        size++;
     }
 
     public int indexOf(int item) {
@@ -94,6 +97,7 @@ public class MyLinkedList {
                 this.first = this.first.next;
                 first.next = null;
             }
+            size--;
         }
     }
 
@@ -113,6 +117,11 @@ public class MyLinkedList {
                 current.next = null;
                 this.last = current;
             }
+            size--;
         }
+    }
+
+    public int size() {
+        return this.size;
     }
 }
