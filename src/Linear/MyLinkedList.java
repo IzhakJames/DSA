@@ -16,6 +16,15 @@ package Linear;
  * size()              -> O(1)      // If tracked; O(n) if counting on demand
  */
 public class MyLinkedList {
+    private class Node {
+        private int value;
+        private Node next;
+
+        private Node(int value) {
+            this.value = value;
+        }
+    }
+
     private Node first;
     private Node last;
 
@@ -33,7 +42,7 @@ public class MyLinkedList {
             this.first = newNode;
             this.last = newNode;
         } else {
-            newNode.setNext(this.first);
+            newNode.next = this.first;
             this.first = newNode;
         }
 
@@ -43,22 +52,21 @@ public class MyLinkedList {
         Node newNode = new Node(item);
         if (isEmpty()) {
             this.first = newNode;
-            this.last = newNode;
         } else {
-            this.last.setNext(newNode);
-            this.last = newNode;
+            this.last.next = newNode;
         }
+        this.last = newNode;
     }
 
     public int indexOf(int item) {
         int counter = 0;
         Node current = this.first;
         while (current != null) {
-            if (current.getValue() == item) {
+            if (current.value == item) {
                 return counter;
             } else {
                 counter++;
-                current = current.getNext();
+                current = current.next;
             }
         }
         return -1;
@@ -72,6 +80,26 @@ public class MyLinkedList {
         return this.first == null;
     }
 
-    //deleteFirst
-    //deleteLast
+    public void deleteFirst() {
+        if (isEmpty()) {
+            return;
+        } else {
+            Node first = this.first;
+            this.first = this.first.next;
+            first.next = null;
+        }
+    }
+
+    public void deleteLast() {
+        if (isEmpty()) {
+            return;
+        } else {
+            Node current = this.first;
+            while (current.next != this.last) {
+                current = current.next;
+            }
+            current.next = null;
+            this.last = current;
+        }
+    }
 }

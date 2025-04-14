@@ -11,5 +11,7 @@ public class Main {
         list.addLast(5);
         list.addLast(6);
         int index = list.indexOf(1);
+        list.deleteFirst();
+        list.deleteLast();
     }
 }
