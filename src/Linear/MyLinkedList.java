@@ -1,5 +1,7 @@
 package Linear;
 
+import java.util.NoSuchElementException;
+
 /*
  * LinkedList Operations Complexity:
  *
@@ -28,12 +30,12 @@ public class MyLinkedList {
     private Node first;
     private Node last;
 
-    public Node getFirst() {
-        return first;
+    public int getFirst() {
+        return first.value;
     }
 
-    public Node getLast() {
-        return last;
+    public int getLast() {
+        return last.value;
     }
 
     public void addFirst(int first) {
@@ -82,24 +84,35 @@ public class MyLinkedList {
 
     public void deleteFirst() {
         if (isEmpty()) {
-            return;
+            throw new NoSuchElementException();
         } else {
-            Node first = this.first;
-            this.first = this.first.next;
-            first.next = null;
+            if (this.first == this.last) {
+                this.first = null;
+                this.last = null;
+            } else {
+                Node first = this.first;
+                this.first = this.first.next;
+                first.next = null;
+            }
         }
     }
 
     public void deleteLast() {
         if (isEmpty()) {
-            return;
+            throw new NoSuchElementException();
         } else {
-            Node current = this.first;
-            while (current.next != this.last) {
-                current = current.next;
+            if (this.first == this.last) {
+                this.first = null;
+                this.last = null;
+            } else {
+                Node current = this.first;
+                // Traverse to the second last node
+                while (current.next != this.last) {
+                    current = current.next;
+                }
+                current.next = null;
+                this.last = current;
             }
-            current.next = null;
-            this.last = current;
         }
     }
 }
