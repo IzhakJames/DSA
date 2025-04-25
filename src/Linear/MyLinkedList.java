@@ -215,16 +215,14 @@ public class MyLinkedList {
         } else {
             Node pointer1 = this.first;
             Node pointer2 = this.first;
-            while (pointer2 != this.last) {
-                if (pointer2.next == this.last) {
-                    System.out.println("[" + pointer1.value + ", "  + pointer1.next.value + "]");
-                    break;
-                }
+            while (pointer2 != this.last && pointer2.next != this.last) {
                 pointer1 = pointer1.next;
                 pointer2 = pointer2.next.next;
             }
             if (pointer2 == this.last) {
                 System.out.println("[" + pointer1.value + "]");
+            } else {
+                System.out.println("[" + pointer1.value + ", "  + pointer1.next.value + "]");
             }
         }
     }
