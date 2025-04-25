@@ -124,4 +124,34 @@ public class MyLinkedList {
     public int size() {
         return this.size;
     }
+
+    public int[] toArray() {
+        int[] array = new int[this.size()];
+        Node current = this.first;
+        for (int i = 0; i < this.size(); i++) {
+            array[i] = current.value;
+            current = current.next;
+        }
+        return array;
+    }
+
+    public void reverse() {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        if (this.size == 1) {
+            return;
+        }
+        Node current = this.first;
+        Node prev = null;
+        while (current != null) {
+            Node next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        this.last = this.first;
+        this.first = prev;
+
+    }
 }
