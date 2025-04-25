@@ -12,10 +12,11 @@ public class Main {
         list.addLast(4);
         list.addLast(5);
         list.addLast(6);
-        System.out.println(Arrays.toString(list.toArray()));
-        int index = list.indexOf(1);
-        list.reverse();
-        System.out.println(Arrays.toString(list.toArray()));
+        int output1 = list.getKthNodeFromEndWithSize(4);
+        int output2 = list.getKthNodeFromEnd(4);
+        System.out.println(output1);
+        System.out.println(output2);
+
 
     }
 }

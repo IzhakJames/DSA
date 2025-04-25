@@ -137,11 +137,13 @@ public class MyLinkedList {
 
     public void reverse() {
         if (isEmpty()) {
-            throw new NoSuchElementException();
+            return; // Changed this from throwing exception
         }
+
         if (this.size == 1) {
             return;
         }
+
         Node current = this.first;
         Node prev = null;
         while (current != null) {
@@ -150,8 +152,57 @@ public class MyLinkedList {
             prev = current;
             current = next;
         }
+
         this.last = this.first;
         this.first = prev;
+    }
+
+    public int getKthNodeFromEndWithSize(int k) {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        if (k > this.size() || k <= 0) {
+            throw new IllegalArgumentException("K-th node is not within the size of list");
+        }
+        if (k == this.size()) {
+            return this.first.value;
+        }
+        if (k == 1) {
+            return this.last.value;
+        }
+        int loopCounter = this.size - k + 1;
+        Node current = this.first;
+
+        for (int i = 1; i < loopCounter; i++) {
+            current = current.next;
+        }
+        return current.value;
+    }
+
+    /*
+    * This method is for cases where size() is unknown
+    * */
+    public int getKthNodeFromEnd(int k) {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        if (k > this.size() || k <= 0) {
+            throw new IllegalArgumentException("K-th node is not within the size of list");
+        }
+        if (k == 1) {
+            return this.last.value;
+        }
+        Node point1 = this.first;
+        Node point2 = this.first;
+        for (int i = 1; i < k; i++) {
+            point2 = point2.next;
+        }
+        while (point2 != this.last) {
+            point1 = point1.next;
+            point2 = point2.next;
+        }
+        return point1.value;
+
 
     }
 }
