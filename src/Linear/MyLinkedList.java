@@ -202,7 +202,30 @@ public class MyLinkedList {
             point2 = point2.next;
         }
         return point1.value;
+    }
 
-
+    public void printMiddle() {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        if (this.first == this.last) {
+            System.out.println("[" + this.first.value + "]");
+        } else if (this.first.next == this.last) {
+            System.out.println("[" + this.first.value + ", "  + this.last.value + "]");
+        } else {
+            Node pointer1 = this.first;
+            Node pointer2 = this.first;
+            while (pointer2 != this.last) {
+                if (pointer2.next == this.last) {
+                    System.out.println("[" + pointer1.value + ", "  + pointer1.next.value + "]");
+                    break;
+                }
+                pointer1 = pointer1.next;
+                pointer2 = pointer2.next.next;
+            }
+            if (pointer2 == this.last) {
+                System.out.println("[" + pointer1.value + "]");
+            }
+        }
     }
 }
