@@ -125,4 +125,8 @@ public class MyArray {
             }
         }
     }
+
+    public int size() {
+        return position;
+    }
 }
