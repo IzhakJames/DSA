@@ -24,30 +24,29 @@ public class MyHashMap {
     public void put(int key, String value) {
         int hash = hash(key);
         if (items[hash] == null) {
-            LinkedList<KeyValuePair> list = new LinkedList<KeyValuePair>();
-            list.add(new KeyValuePair(key, value));
-            items[hash] = list;
-        } else {
-            for  (KeyValuePair pair : items[hash]) {
-                if (pair.key == key) {
-                    pair.value = value;
-                    return;
-                }
-            }
-            items[hash].add(new KeyValuePair(key, value));
+            items[hash] = new LinkedList<KeyValuePair>();
         }
+
+        LinkedList<KeyValuePair> bucket = items[hash];
+        for  (KeyValuePair pair : bucket) {
+            if (pair.key == key) {
+                pair.value = value;
+                return;
+            }
+        }
+
+        bucket.add(new KeyValuePair(key, value));
         size++;
     }
 
     public String get(int key) {
         int hash = hash(key);
-        if (items[hash] == null) {
-            return null;
-        }
-        LinkedList<KeyValuePair> list = items[hash];
-        for (KeyValuePair pair : list) {
-            if (pair.key == key) {
-                return pair.value;
+        if (items[hash] != null) {
+            LinkedList<KeyValuePair> bucket = items[hash];
+            for (KeyValuePair pair : bucket) {
+                if (pair.key == key) {
+                    return pair.value;
+                }
             }
         }
         return null;
@@ -55,14 +54,13 @@ public class MyHashMap {
 
     public String remove(int key) {
         int hash = hash(key);
-        if (items[hash] == null) {
-            return null;
-        }
-        size--;
-        LinkedList<KeyValuePair> list = items[hash];
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).key == key) {
-                return list.remove(i).value;
+        if (items[hash] != null) {
+            LinkedList<KeyValuePair> bucket = items[hash];
+            for (int i = 0; i < bucket.size(); i++) {
+                if (bucket.get(i).key == key) {
+                    size--;
+                    return bucket.remove(i).value;
+                }
             }
         }
         return null;
