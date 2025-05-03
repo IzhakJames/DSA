@@ -5,7 +5,6 @@ import java.util.Arrays;
 // Tried an array implementation of priority queue but too inefficient
 public class MyMinPriorityQueue {
     int[] items;
-    int front = 0;
     int pointer = 0;
     int size = 0;
 

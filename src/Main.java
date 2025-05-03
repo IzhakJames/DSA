@@ -1,15 +1,11 @@
-import Linear.MyMinPriorityQueue;
+
+import Linear.util.CharacterFinder;
 
 public class Main {
     public static void main(String[] args) {
-        MyMinPriorityQueue queue = new MyMinPriorityQueue(10);
-        queue.enqueue(10);
-        queue.enqueue(20);
-        queue.enqueue(15);
-        queue.enqueue(30);
-        queue.enqueue(25);
-        queue.enqueue(5);
-        queue.enqueue(10);
-        System.out.println(queue);
+        char result = CharacterFinder.findFirstNonRepeatingCharacter("a green apple");
+        char result2 = CharacterFinder.findFirstRepeatingCharacter("a green apple");
+        System.out.println(result);
+        System.out.println(result2);
     }
 }
