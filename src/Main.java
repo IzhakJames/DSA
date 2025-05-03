@@ -1,15 +1,23 @@
 
-import Linear.util.ExpressionBalancer;
-import Linear.util.StringReverser;
+import Linear.MyArrayQueue;
+import Linear.util.QueueReverser;
+
+import java.util.ArrayDeque;
+import java.util.Queue;
 
 public class Main {
     public static void main(String[] args) {
-        String input = "abcdefghij";
-        System.out.println(StringReverser.reverseUsingStack(input));
-        System.out.println(StringReverser.reverseWithoutStack(input));
-
-        String expressions = "[(";
-        System.out.println(ExpressionBalancer.isBalance(expressions));
+        MyArrayQueue q = new MyArrayQueue(5);
+        q.enqueue(1);
+        q.enqueue(2);
+        q.enqueue(3);
+        q.enqueue(4);
+        int front = q.dequeue();
+        q.enqueue(5);
+        q.enqueue(6);
+        q.dequeue();
+        q.enqueue(7);
+        System.out.println(q);
 
     }
 }
