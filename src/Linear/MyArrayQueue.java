@@ -3,10 +3,10 @@ package Linear;
 import java.util.Arrays;
 
 /*
- * Queue Operations Complexity:
+ * Queue Operations Complexity, assuming this is a linked-list implementation or a circular buffer:
  *
  * enqueue()  -> O(1)      // Add an element to the rear (offer/add)
- * dequeue()  -> O(1)      // Remove and return the front element (poll/remove)
+ * dequeue()  -> O(1)      // Remove and return the front element (poll/remove), can be O(n) if it is plain array due to shift of elements
  * peek()     -> O(1)      // Return the front element without removing
  * isEmpty()  -> O(1)      // Check if the queue is empty
  * size()     -> O(1)      // Return number of elements in the queue
@@ -30,12 +30,6 @@ public class MyArrayQueue {
     }
 
     public void enqueue(int value) {
-//        NOTE: use the code below for dynamic sized queues
-//        if (size == array.length) {
-//            int[] newArray = new int[array.length * 2];
-//            System.arraycopy(array, 0, newArray, 0, array.length);
-//            array = newArray;
-//        }
         if (isFull()) {
             throw new IllegalStateException("Queue is full");
         }
