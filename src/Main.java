@@ -13,7 +13,7 @@ public class Main {
 //        mytree.insert(12);
 //        mytree.insert(18);
 //        mytree.insert(17);
-//
+
 //        mytree.insert(20);
 //        mytree.insert(10);
 //        mytree.insert(30);
@@ -23,7 +23,7 @@ public class Main {
 //        mytree.insert(3);
 //        mytree.insert(8);
 //        mytree.insert(26);
-//
+
         mytree.insert(7);
         mytree.insert(4);
         mytree.insert(9);
@@ -40,6 +40,7 @@ public class Main {
 //        mytree.traverseInOrderRecursive();
 //        System.out.println(mytree);
         System.out.println(mytree.height());
+        System.out.println(mytree.findMin());
 
     }
 }

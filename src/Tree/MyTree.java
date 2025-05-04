@@ -155,7 +155,25 @@ public class MyTree {
     private int height(Node node) {
         if (node == null) return -1; // height of empty tree = -1
 
-        return Math.max(height(node.left), height(node.right)) + 1;
+        int leftHeight = height(node.left);
+        int rightHeight = height(node.right);
+        int maxHeight = Math.max(leftHeight, rightHeight);
+
+        return maxHeight + 1;
+    }
+
+    public int findMin() {
+        return findMin(root);
+    }
+
+    private int findMin(Node node) {
+        if (node == null) {
+            return Integer.MAX_VALUE;
+        }
+        int left = findMin(node.left);
+        int right = findMin(node.right);
+        int childMin = Math.min(left, right);
+        return Math.min(childMin, node.value);
     }
 
     @Override
