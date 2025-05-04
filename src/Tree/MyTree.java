@@ -195,6 +195,27 @@ public class MyTree {
         return false;
     }
 
+    public boolean isBST() {
+        return isBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private boolean isBST(Node node, int min, int max) {
+        if (node == null) return true;
+        if (node.value < min || node.value > max) {
+            return false;
+        }
+        boolean leftBST = isBST(node.left, min, node.value);
+        boolean rightBST = isBST(node.right, node.value, max);
+        return leftBST && rightBST;
+    }
+
+    // Only use to swap child nodes in order to test BST algo
+    public void swapRoots() {
+        Node temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+    }
+
     @Override
     public String toString() {
         return buildTreeString(root, "", true, ""); // root has no label
