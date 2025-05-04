@@ -35,6 +35,9 @@ mytree.insert(10);
 
  */
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MyTree {
     private class Node {
         int value;
@@ -207,6 +210,22 @@ public class MyTree {
         boolean leftBST = isBST(node.left, min, node.value);
         boolean rightBST = isBST(node.right, node.value, max);
         return leftBST && rightBST;
+    }
+
+    public void getNodesAtKDistance(int k) {
+        List<Integer> list = new ArrayList<>();
+        getNodesAtKDistance(k, root, list);
+        System.out.println(list);
+    }
+
+    private void getNodesAtKDistance(int k, Node node, List<Integer> list) {
+        if (node == null) return;
+        if (k == 0) {
+            list.add(node.value);
+            return;
+        }
+        getNodesAtKDistance(k - 1, node.left, list);
+        getNodesAtKDistance(k - 1, node.right, list);
     }
 
     // Only use to swap child nodes in order to test BST algo
