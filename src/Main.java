@@ -32,6 +32,16 @@ public class Main {
         mytree.insert(8);
         mytree.insert(10);
 
+
+        MyTree mytree2 = new MyTree();
+        mytree2.insert(7);
+        mytree2.insert(4);
+        mytree2.insert(9);
+        mytree2.insert(1);
+        mytree2.insert(6);
+        mytree2.insert(8);
+        mytree2.insert(10);
+
 //        System.out.println("Preorder traversal of the tree");
 //        mytree.traversePreOrderRecursive();
 //        System.out.println("\nPostorder traversal of the tree");
@@ -39,8 +49,9 @@ public class Main {
 //        System.out.println("\nIn order traversal of the tree");
 //        mytree.traverseInOrderRecursive();
 //        System.out.println(mytree);
-        System.out.println(mytree.height());
-        System.out.println(mytree.findMin());
+//        System.out.println(mytree.height());
+//        System.out.println(mytree.findMin());
+        System.out.println(mytree.equals(mytree2));
 
     }
 }

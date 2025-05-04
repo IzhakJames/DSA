@@ -176,6 +176,25 @@ public class MyTree {
         return Math.min(childMin, node.value);
     }
 
+    public boolean equals(MyTree tree) {
+        if (tree == null) return false;
+        return equals(tree.root, this.root);
+    }
+
+    private boolean equals(Node node1, Node node2) {
+        if (node1 == null && node2 == null) {
+            return true;
+        }
+        if (node1 != null && node2 != null) {
+            boolean rootEqual = node1.value == node2.value;
+
+            boolean leftEqual = equals(node1.left, node2.left);
+            boolean rightEqual = equals(node1.right, node2.right);
+            return rootEqual && leftEqual && rightEqual;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return buildTreeString(root, "", true, ""); // root has no label
