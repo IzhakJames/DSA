@@ -69,12 +69,54 @@ public class MyTree {
         return false;
     }
 
+    public void traversePreOrderRecursive() {
+        traversePreOrderRecursive(root);
+    }
+
+    private void traversePreOrderRecursive(Node node) {
+        System.out.print(node.value + " ");
+        if (node.left != null) {
+            traversePreOrderRecursive(node.left);
+        }
+        if (node.right != null) {
+            traversePreOrderRecursive(node.right);
+        }
+    }
+
+    public void traversePostOrderRecursive() {
+        traversePostOrderRecursive(root);
+    }
+
+    private void traversePostOrderRecursive(Node node) {
+        if (node.left != null) {
+            traversePostOrderRecursive(node.left);
+        }
+        if (node.right != null) {
+            traversePostOrderRecursive(node.right);
+        }
+        System.out.print(node.value + " ");
+    }
+
+    public void traverseInOrderRecursive() {
+        traverseInOrderRecursive(root);
+    }
+
+    private void traverseInOrderRecursive(Node node) {
+        if (node.left != null) {
+            traverseInOrderRecursive(node.left);
+        }
+        System.out.print(node.value + " ");
+        if (node.right != null) {
+            traverseInOrderRecursive(node.right);
+        }
+    }
+
     @Override
     public String toString() {
         return buildTreeString(root, "", true, ""); // root has no label
     }
 
-    // in-order traversal
+    //Something like a Pre-order traversal
     private String buildTreeString(Node node, String prefix, boolean isTail, String label) {
         if (node == null) return "";
 
@@ -102,6 +144,4 @@ public class MyTree {
 
         return builder.toString();
     }
-
-
 }
