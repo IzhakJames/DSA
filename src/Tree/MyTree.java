@@ -179,6 +179,49 @@ public class MyTree {
         return Math.min(childMin, node.value);
     }
 
+    public int delete(int value) {
+        return delete(value, root).value;
+    }
+
+    private Node delete(int value, Node node) {
+        if (node == null) {
+            return null;
+        }
+        if (value < node.value) {
+            node.left = delete(value, node.left);
+        } else if  (value > node.value) {
+            node.right = delete(value, node.right);
+        } else {
+            // Case 1: No child
+            if (node.left == null && node.right == null) {
+                return null;
+            }
+            // Case 2 : 1 child
+            if (node.left == null) {
+                return node.right;
+            }
+            if (node.right == null) {
+                return node.left;
+            }
+
+            // Case 3: Two child
+            Node successor = findMinNode(node.right); // min node is extreme left for BST
+            node.value = successor.value;
+            node.right = delete(successor.value, node.right); // delete successor
+        }
+        return node;
+    }
+
+    private Node findMinNode(Node node) {
+        while (node.left != null) {
+            node = node.left;
+        }
+        return node;
+
+    }
+
+
+
     public boolean equals(MyTree tree) {
         if (tree == null) return false;
         return equals(tree.root, this.root);
