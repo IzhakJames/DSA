@@ -7,11 +7,12 @@ public class Main {
 
 
 
-        mytree.insert(18);
-        mytree.insert(15);
-        mytree.insert(10);
 
-//        System.out.println(mytree);
+        mytree.insert(16);
+        mytree.insert(19);
+        mytree.insert(18);
+
+        System.out.println(mytree);
 
 
     }

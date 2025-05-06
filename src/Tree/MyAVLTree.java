@@ -27,16 +27,39 @@ public class MyAVLTree {
                 node.right = insert(value, node.right);
             }
         }
+        setHeight(node);
+        node = balance(node);
+
+
+        return node;
+    }
+    private void setHeight(AVLNode node) {
         node.height = Math.max(height(node.left), height(node.right)) + 1;
+    }
 
-        // balanceFactor = h(L) - h(R)
-        int balanceFactor = height(node.left) - height(node.right);
-        if (balanceFactor > 1) {
-            System.out.println(node.value + " is left Heavy");
-        } else if (balanceFactor < -1) {
-            System.out.println(node.value + " is right Heavy");
+    private AVLNode balance(AVLNode node) {
+        if (node == null) {
+            return null;
         }
+        // balanceFactor = h(L) - h(R)
+        if (isLeftHeavy(node)) { // > 1
+            System.out.println(node.value + " is left Heavy");
+            if (balanceFactor(node.left) < 0) {
+                System.out.println(node.left.value + " rotate left");
+                node.left = rotateLeft(node.left);
+            }
+            System.out.println(node.value + " rotate right");
+            node = rotateRight(node);
 
+        } else if (isRightHeavy(node)) { // -1
+            System.out.println(node.value + " is right Heavy");
+            if (balanceFactor(node.right) > 0) {
+                System.out.println(node.right.value + " rotate right");
+                node.right = rotateRight(node.right);
+            }
+            System.out.println(node.value + " rotate left");
+            node = rotateLeft(node);
+        }
         return node;
     }
 
@@ -44,14 +67,35 @@ public class MyAVLTree {
         return node == null ? -1 : node.height;
     }
 
-//    private boolean isLeftHeavy(AVLNode node) {
-//        return height(node.left) - height(node.right)  > 1;
-//    }
-//
-//    private boolean isRightHeavy(AVLNode node) {
-//        return height(node.left) - height(node.right)  > -1;
-//    }
+    private int balanceFactor(AVLNode node) {
+        return node == null ? 0 : height(node.left) - height(node.right);
+    }
 
+    private boolean isLeftHeavy(AVLNode node) {
+        return balanceFactor(node)  > 1;
+    }
+
+    private boolean isRightHeavy(AVLNode node) {
+        return balanceFactor(node)  < -1;
+    }
+
+    private AVLNode rotateLeft(AVLNode node) {
+        AVLNode newRoot = node.right;
+        node.right = newRoot.left;
+        newRoot.left = node;
+        setHeight(node);
+        setHeight(newRoot);
+        return newRoot;
+    }
+
+    private AVLNode rotateRight(AVLNode node) {
+        AVLNode newRoot = node.left;
+        node.left = newRoot.right;
+        newRoot.right = node;
+        setHeight(node);
+        setHeight(newRoot);
+        return newRoot;
+    }
     @Override
     public String toString() {
         return buildTreeString(root, "", true, ""); // root has no label
