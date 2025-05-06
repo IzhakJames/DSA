@@ -44,7 +44,9 @@ public class MyMaxHeap {
         int first = items[0];
         swap(0, pointer - 1);
         items[--pointer] = 0;
-        bubbleDown();
+        if (pointer > 1) {
+            bubbleDown();
+        }
         return first;
 
     }
