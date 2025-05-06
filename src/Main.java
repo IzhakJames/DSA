@@ -16,6 +16,13 @@ public class Main {
         heap.insert(24);
         System.out.println(heap);
         heap.remove();
+        heap.remove();
+        heap.remove();
+        heap.remove();
+        heap.remove();
+        heap.remove();
+        heap.remove();
+        heap.remove();
         System.out.println(heap);
 
     }

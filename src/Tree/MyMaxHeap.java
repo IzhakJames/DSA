@@ -53,14 +53,14 @@ public class MyMaxHeap {
         int currentIndex = 0;
         int leftChildIndex = 1;
         int rightChildIndex = 2;
-        while (items[currentIndex] < items[leftChildIndex] || items[currentIndex] < items[rightChildIndex]) {
-            if (items[currentIndex] < items[leftChildIndex]) {
-                swap(currentIndex, leftChildIndex);
-                currentIndex = leftChildIndex;
-            } else {
-                swap(currentIndex, rightChildIndex);
-                currentIndex = rightChildIndex;
-            }
+        while (!(items[currentIndex] > items[leftChildIndex] && items[currentIndex] > items[rightChildIndex])) {
+            int largerChildIndex = items[leftChildIndex] > items[rightChildIndex]
+                    ? leftChildIndex
+                    : rightChildIndex;
+
+            swap(currentIndex, largerChildIndex);
+            currentIndex = largerChildIndex;
+
             leftChildIndex = 2 * currentIndex + 1;
             rightChildIndex = 2 * currentIndex + 2;
             if (leftChildIndex >= pointer || rightChildIndex >= pointer) {
