@@ -146,7 +146,6 @@ public class MyTree {
         boolean right = areSiblings(value1, value2, node.right);
 
         return left || right;
-
     }
 
     public void traversePostOrderRecursive() {
@@ -347,6 +346,42 @@ public class MyTree {
         Node temp = root.left;
         root.left = root.right;
         root.right = temp;
+    }
+
+    public List<Integer> getAncestors(int value) {
+        return getAncestors(value, root);
+    }
+
+    private List<Integer> getAncestors(int value, Node node) {
+        List<Integer> ancestors = new ArrayList<>();
+
+        if (node == null) return new ArrayList<>();
+
+        if (node.value > value) {
+            if (node.left != null) {
+                if (node.left.value == value) {
+                    ancestors.add(node.value);
+                } else {
+                    ancestors.addAll(getAncestors(value, node.left));
+                }
+                if (ancestors.contains(node.left.value)) {
+                    ancestors.add(node.value);
+                }
+            }
+        }
+        if (node.value < value) {
+            if (node.right != null) {
+                if (node.right.value == value) {
+                    ancestors.add(node.value);
+                } else {
+                    ancestors.addAll(getAncestors(value, node.right));
+                }
+                if (ancestors.contains(node.right.value)) {
+                    ancestors.add(node.value);
+                }
+            }
+        }
+        return ancestors;
     }
 
     @Override
