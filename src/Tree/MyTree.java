@@ -384,6 +384,25 @@ public class MyTree {
         return ancestors;
     }
 
+
+    public boolean isBalance() {
+        return isBalance(root);
+    }
+
+    private boolean isBalance(Node node) {
+        if (node == null) {
+            return true;
+        }
+        int leftHeight = height(node.left);
+        int rightHeight = height(node.right);
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            return false;
+        }
+        return isBalance(node.left) && isBalance(node.right);
+
+    }
+
+
     @Override
     public String toString() {
         return buildTreeString(root, "", true, ""); // root has no label
