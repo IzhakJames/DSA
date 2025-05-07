@@ -65,6 +65,10 @@ public class MyTree {
         root = new Node(value);
     }
 
+    public int size() {
+        return size;
+    }
+
     public boolean isEmpty() {
         return size == 0;
     }
@@ -151,6 +155,21 @@ public class MyTree {
         }
     }
 
+    public int countLeaves() {
+        return countLeaves(root);
+    }
+
+    private int countLeaves(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        if (node.left == null && node.right == null) {
+            return 1;
+        }
+        return countLeaves(node.left) + countLeaves(node.right);
+
+    }
+
     public int height() {
         return height(root);
     }
@@ -209,6 +228,7 @@ public class MyTree {
             node.value = successor.value;
             node.right = delete(successor.value, node.right); // delete successor
         }
+        size--;
         return node;
     }
 

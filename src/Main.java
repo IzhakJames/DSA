@@ -7,10 +7,18 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        int[] arr = {5,3,8,4,1,2};
-        int[] arr2 = {1,2,3,4,5,6};
-        MaxHeap.heapify(arr2);
-        System.out.println(Arrays.toString(arr2));
+        MyTree mytree = new MyTree();
+        mytree.insert(10);
+        mytree.insert(5);
+        mytree.insert(15);
+        mytree.insert(6);
+        mytree.insert(1);
+        mytree.insert(8);
+        mytree.insert(12);
+        mytree.insert(18);
+        mytree.insert(17);
+        System.out.println(mytree);
+        System.out.println(mytree.countLeaves());
 
     }
 }
