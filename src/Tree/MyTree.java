@@ -127,6 +127,28 @@ public class MyTree {
         }
     }
 
+    public boolean areSiblings(int value1, int value2) {
+        return areSiblings(value1, value2, root);
+    }
+
+    private boolean areSiblings(int value1, int value2, Node node) {
+        if (node == null) {
+            return false;
+        }
+        if (node.left != null && node.right != null) {
+            if (node.left.value == value1 && node.right.value == value2
+                    || node.left.value == value2 && node.right.value == value1){
+                return true;
+            };
+        }
+
+        boolean left = areSiblings(value1, value2, node.left);
+        boolean right = areSiblings(value1, value2, node.right);
+
+        return left || right;
+
+    }
+
     public void traversePostOrderRecursive() {
         traversePostOrderRecursive(root);
     }
@@ -198,6 +220,37 @@ public class MyTree {
         return Math.min(childMin, node.value);
     }
 
+    public int findMax() {
+        return findMax(root);
+    }
+
+    private int findMax(Node node) {
+        if (node == null) {
+            return Integer.MIN_VALUE;
+        }
+        int left = findMax(node.left);
+        int right = findMax(node.right);
+        int childMax = Math.max(left, right);
+        return Math.max(childMax, node.value);
+    }
+
+    public boolean contains(int value) {
+        return contains(root, value);
+    }
+    private boolean contains(Node node, int value) {
+        if (node == null) {
+            return false;
+        }
+        if (node.value == value) {
+            return true;
+        }
+        if (node.value < value) {
+            return contains(node.left, value);
+        } else  {
+            return contains(node.right, value);
+        }
+    }
+
     public int delete(int value) {
         return delete(value, root).value;
     }
@@ -239,8 +292,6 @@ public class MyTree {
         return node;
 
     }
-
-
 
     public boolean equals(MyTree tree) {
         if (tree == null) return false;

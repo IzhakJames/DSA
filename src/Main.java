@@ -18,7 +18,6 @@ public class Main {
         mytree.insert(18);
         mytree.insert(17);
         System.out.println(mytree);
-        System.out.println(mytree.countLeaves());
-
+        System.out.println(mytree.areSiblings(10,15));
     }
 }
