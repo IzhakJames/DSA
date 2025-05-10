@@ -1,21 +1,17 @@
 import Tree.MyAVLTree;
 import Tree.MyMaxHeap;
 import Tree.MyTree;
+import Tree.MyTrie;
 import Tree.util.MaxHeap;
 
 import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        MyTree mytree = new MyTree();
-        mytree.insert(10);
-        mytree.insert(5);
-        mytree.insert(15);
-        mytree.insert(6);
-        mytree.insert(1);
-        mytree.insert(8);
-        mytree.insert(12);
-        System.out.println(mytree);
-        System.out.println(mytree.isBalance());
+        MyTrie myTrie = new MyTrie();
+        myTrie.insert("cat");
+        myTrie.insert("catch");
+        myTrie.insert("cotton");
+        System.out.println("Done");
     }
 }
