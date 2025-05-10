@@ -14,10 +14,6 @@ public class Main {
         myTrie.insert("cotton");
         myTrie.insert("dog");
         myTrie.insert("snake");
-//        myTrie.traversePreOrder();
-//        myTrie.traversePostOrder();
-//        myTrie.remove("car");
-//        myTrie.traversePreOrder();
-        myTrie.autoCompleteWord("co");
+        System.out.println(myTrie.containsRecursive("ca"));
     }
 }

@@ -71,6 +71,20 @@ public class MyTrie {
         return node.isEnd;
     }
 
+    public boolean containsRecursive(String word) {
+        return containsRecursive(word, root);
+    }
+
+    private boolean containsRecursive(String word, TrieNode node) {
+        if (word.isEmpty()) {
+            return node.isEnd;
+        }
+        if (node.hasChild(word.charAt(0))) {
+            return containsRecursive(word.substring(1), node.getChild(word.charAt(0)));
+        }
+        return false;
+    }
+
     public void traversePreOrder() {
         System.out.println("Traverse Pre Order");
         traversePreOrder(root, "");
