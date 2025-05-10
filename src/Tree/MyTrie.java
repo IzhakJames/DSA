@@ -7,11 +7,11 @@ public class MyTrie {
     public static int ALPHABET_SIZE = 26;
 
     private class TrieNode {
-        String value;
+        char value;
         TrieNode[] children;
         boolean isEnd;
 
-        TrieNode(String value) {
+        TrieNode(char value) {
             this.value = value;
             children = new TrieNode[ALPHABET_SIZE];
             isEnd = false;
@@ -26,13 +26,13 @@ public class MyTrie {
     private TrieNode root;
 
     public MyTrie() {
-        this.root = new TrieNode(null);
+        this.root = new TrieNode(' ');
     }
 
     public void insert(String word) {
         TrieNode node = root;
         for (char c : word.toCharArray()) {
-            TrieNode newLetter = new TrieNode(String.valueOf(c));
+            TrieNode newLetter = new TrieNode(c);
             if (node.children[c - 'a'] == null) {
                 node.children[c - 'a'] = newLetter;
             }
@@ -40,12 +40,5 @@ public class MyTrie {
 
         }
         node.isEnd = true;
-    }
-
-    private boolean containsLetter(TrieNode[] children, String letter) {
-        for (TrieNode node : children) {
-            if (node.value.equals(letter)) return true;
-        }
-        return false;
     }
 }
