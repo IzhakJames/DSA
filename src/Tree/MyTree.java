@@ -402,7 +402,6 @@ public class MyTree {
 
     }
 
-
     @Override
     public String toString() {
         return buildTreeString(root, "", true, ""); // root has no label

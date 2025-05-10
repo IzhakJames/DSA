@@ -12,6 +12,12 @@ public class Main {
         myTrie.insert("cat");
         myTrie.insert("catch");
         myTrie.insert("cotton");
-        System.out.println("Done");
+        myTrie.insert("dog");
+        myTrie.insert("snake");
+//        myTrie.traversePreOrder();
+//        myTrie.traversePostOrder();
+//        myTrie.remove("car");
+//        myTrie.traversePreOrder();
+        myTrie.autoCompleteWord("co");
     }
 }
