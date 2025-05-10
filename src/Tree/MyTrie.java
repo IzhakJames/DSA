@@ -2,24 +2,24 @@ package Tree;
 
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class MyTrie {
-    public static int ALPHABET_SIZE = 26;
+//    public static int ALPHABET_SIZE = 26;
 
     private class TrieNode {
         char value;
-        TrieNode[] children;
+        HashMap<Character, TrieNode> children;
         boolean isEnd;
 
-        TrieNode(char value) {
+//        TrieNode(char value) {
+//            this.value = value;
+//            children = new TrieNode[ALPHABET_SIZE];
+//            isEnd = false;
+//        }
+        public TrieNode(char value) {
             this.value = value;
-            children = new TrieNode[ALPHABET_SIZE];
-            isEnd = false;
-        }
-
-        @Override
-        public String toString() {
-            return String.format("Value: %s with children %s", value, Arrays.toString(children));
+            children = new HashMap<Character, TrieNode>();
         }
     }
 
@@ -32,12 +32,10 @@ public class MyTrie {
     public void insert(String word) {
         TrieNode node = root;
         for (char c : word.toCharArray()) {
-            TrieNode newLetter = new TrieNode(c);
-            if (node.children[c - 'a'] == null) {
-                node.children[c - 'a'] = newLetter;
+            if (!node.children.containsKey(c)) {
+                node.children.put(c, new TrieNode(c));
             }
-            node = node.children[c - 'a'];
-
+            node = node.children.get(c);
         }
         node.isEnd = true;
     }
