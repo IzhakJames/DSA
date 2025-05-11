@@ -2,7 +2,7 @@ package Graph;
 
 import java.util.*;
 
-public class MYWeightedGraph {
+public class MyWeightedGraph {
 
     private class Node {
         private String label;
@@ -127,6 +127,24 @@ public class MYWeightedGraph {
         System.out.println(path.toString());
 
         return distances.get(nodes.get(to));
+    }
+
+    public boolean hasCycle() {
+        Node first = nodes.values().iterator().next();
+        HashSet<Node> visited = new HashSet<>();
+        if (hasCycle(first, visited, first)) return true;
+
+        return false;
+    }
+
+    private boolean hasCycle(Node node, HashSet<Node> visited, Node parent) {
+        if (visited.contains(node)) return true;
+        visited.add(node);
+        for (Edge edge : node.getEdges()) {
+            if (!edge.to.equals(parent))
+                if (hasCycle(edge.to, visited, node)) return true;
+        }
+        return false;
     }
 
     public void print() {
