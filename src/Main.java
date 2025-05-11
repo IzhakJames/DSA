@@ -7,10 +7,8 @@ public class Main {
         graph.addNode("A");
         graph.addNode("B");
         graph.addNode("C");
-        graph.addNode("D");
         graph.addEdge("A", "B",5);
         graph.addEdge("B", "C",2);
-        graph.addEdge("C", "D",5);
 //        graph.addEdge("D", "A");
 
         graph.print();
