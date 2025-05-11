@@ -9,9 +9,10 @@ public class Main {
         graph.addNode("C");
         graph.addEdge("A", "B",5);
         graph.addEdge("B", "C",2);
+        graph.addEdge("C", "A",1);
 //        graph.addEdge("D", "A");
 
-        graph.print();
+//        graph.print();
         System.out.println(graph.getShortestDistance("A","C"));
     }
 }

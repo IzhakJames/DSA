@@ -80,6 +80,8 @@ public class MYWeightedGraph {
             distances.put(source, Integer.MAX_VALUE);
         }
         distances.replace(fromNode,0);
+
+        Map<Node, Node> previousNodes = new HashMap<>();
         HashSet<Node> visited = new HashSet<>();
 
         PriorityQueue<NodeEntry> pq = new PriorityQueue<NodeEntry>(
@@ -95,12 +97,29 @@ public class MYWeightedGraph {
                     int newDist = distances.get(current) + edge.weight;
                     if (newDist < distances.get(edge.to)) {
                         distances.replace(edge.to, newDist);
+                        previousNodes.put(edge.to, current);
                         pq.offer(new NodeEntry(edge.to, newDist));
                     }
                 }
 
             }
         }
+
+        // Print out the path
+        Stack<Node> stack = new Stack<>();
+        Node current = nodes.get(to);
+        while (current != null) {
+            stack.push(current);
+            current = previousNodes.get(current);
+        }
+
+        StringBuilder path = new StringBuilder();
+        while (!stack.isEmpty()) {
+            path.append(stack.pop());
+            if (!stack.isEmpty()) path.append(" -> ");
+        }
+        System.out.println(path.toString());
+
         return distances.get(nodes.get(to));
     }
 
