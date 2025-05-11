@@ -1,9 +1,6 @@
 package Graph;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 // Directed Graph
 public class MyGraph {
@@ -62,10 +59,90 @@ public class MyGraph {
         if (firstNode == null || secondNode == null) {
             return;
         }
-
         adjacencyList.get(firstNode).remove(secondNode);
+    }
 
+    public void traverseDepthFirst(String word) {
+        Node node = nodes.get(word);
+        if (node == null) {
+            throw new IllegalArgumentException("Node not found");
+        }
+        traverseDepthFirst(node, new HashSet<Node>());
+    }
 
+    // Pre- Order
+    private void traverseDepthFirst(Node node, Set<Node> visited) {
+        System.out.println(node.label);
+        for (Node sourceNode : adjacencyList.get(node)){
+            if (!visited.contains(sourceNode)) {
+                visited.add(sourceNode);
+                traverseDepthFirst(sourceNode, visited);
+            }
+        }
+    }
+
+    public void traverseDepthFirstIterative(String word) {
+        Node node = nodes.get(word);
+        if (node == null) {
+            throw new IllegalArgumentException("Node not found");
+        }
+        Stack<Node> stack = new Stack<>();
+        Set<Node> visited = new HashSet<>();
+        stack.push(node);
+        while (!stack.isEmpty()) {
+            node = stack.pop();
+            System.out.println(node.label);
+            for (Node sourceNode : adjacencyList.get(node)) {
+                if (!visited.contains(sourceNode)) {
+                    visited.add(sourceNode);
+                    stack.push(sourceNode);
+                }
+            }
+        }
+    }
+
+    public void traverseBreathFirst(String word) {
+        Node node = nodes.get(word);
+        if (node == null) {
+            throw new IllegalArgumentException("Node not found");
+        }
+        Queue<Node> queue = new LinkedList<>();
+        Set<Node> visited = new HashSet<>();
+        queue.offer(node);
+        while (!queue.isEmpty()) {
+            node = queue.poll();
+            System.out.println(node.label);
+            for (Node sourceNode : adjacencyList.get(node)) {
+                if (!visited.contains(sourceNode)) {
+                    visited.add(sourceNode);
+                    queue.offer(sourceNode);
+                }
+            }
+        }
+    }
+
+    public List<String> topologicalSort() {
+        Stack<Node> stack = new Stack<>();
+        Set<Node> visited = new HashSet<>();
+        for (Node node : adjacencyList.keySet()) {
+            topologicalSort(node, visited, stack);
+        }
+        List<String> list = new ArrayList<>();
+        while (!stack.isEmpty()) {
+            list.add(stack.pop().label);
+        }
+        return list;
+    }
+
+    private void topologicalSort(Node node, Set<Node> visited, Stack<Node> stack) {
+        if (visited.contains(node)) {
+            return;
+        }
+        visited.add(node);
+        for (Node sourceNode : adjacencyList.get(node)) {
+            topologicalSort(sourceNode, visited, stack);
+        }
+        stack.push(node);
     }
 
     public void print() {

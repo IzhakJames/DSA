@@ -10,15 +10,17 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         MyGraph graph = new MyGraph();
+        graph.addNode("X");
         graph.addNode("A");
         graph.addNode("B");
-        graph.addNode("C");
-        graph.addEdge("A", "B");
-        graph.addEdge("A", "C");
+        graph.addNode("P");
+        graph.addEdge("X", "A");
+        graph.addEdge("X", "B");
+        graph.addEdge("A", "P");
+        graph.addEdge("B", "P");
+//        graph.addEdge("P", "X");
+
         graph.print();
-        graph.removeNode("A");
-        graph.print();
-        graph.addEdge("C" , "B");
-        graph.print();
+        System.out.println(graph.topologicalSort());
     }
 }
