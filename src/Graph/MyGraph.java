@@ -148,12 +148,13 @@ public class MyGraph {
     public boolean hasCycle() {
         Set<Node> visited = new HashSet<>();
         Set<Node> visiting = new HashSet<>();
-        boolean hasCycle = false;
         for (Node node : adjacencyList.keySet()) {
-            hasCycle = hasCycle(node, visited, visiting);
+            if (hasCycle(node, visited, visiting)) {
+                return true;
+            }
 
         }
-        return hasCycle;
+        return false;
     }
 
     private boolean hasCycle(Node node, Set<Node> visited, Set<Node> visiting) {
