@@ -1,26 +1,18 @@
+import Graph.MYWeightedGraph;
 import Graph.MyGraph;
-import Tree.MyAVLTree;
-import Tree.MyMaxHeap;
-import Tree.MyTree;
-import Tree.MyTrie;
-import Tree.util.MaxHeap;
-
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        MyGraph graph = new MyGraph();
-        graph.addNode("X");
+        MYWeightedGraph graph = new MYWeightedGraph();
         graph.addNode("A");
         graph.addNode("B");
-        graph.addNode("P");
-        graph.addEdge("X", "A");
-        graph.addEdge("X", "B");
-        graph.addEdge("A", "P");
-        graph.addEdge("B", "P");
-        graph.addEdge("P", "X");
+        graph.addNode("C");
+        graph.addNode("D");
+        graph.addEdge("A", "B",5);
+        graph.addEdge("B", "C",2);
+        graph.addEdge("C", "D",5);
+//        graph.addEdge("D", "A");
 
         graph.print();
-        System.out.println(graph.hasCycle());
     }
 }
