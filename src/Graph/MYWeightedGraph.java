@@ -74,6 +74,9 @@ public class MYWeightedGraph {
 
     public int getShortestDistance(String from, String to) {
         Node fromNode = nodes.get(from);
+        if (fromNode == null) {
+            throw new IllegalArgumentException("Node " + from + " does not exist");
+        }
 
         HashMap<Node, Integer> distances = new HashMap<>();
         for (Node source : nodes.values()) {
@@ -108,6 +111,9 @@ public class MYWeightedGraph {
         // Print out the path
         Stack<Node> stack = new Stack<>();
         Node current = nodes.get(to);
+        if  (current == null) {
+            throw new IllegalArgumentException("Node " + to + " does not exist");
+        }
         while (current != null) {
             stack.push(current);
             current = previousNodes.get(current);
