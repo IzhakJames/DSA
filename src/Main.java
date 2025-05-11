@@ -18,9 +18,9 @@ public class Main {
         graph.addEdge("X", "B");
         graph.addEdge("A", "P");
         graph.addEdge("B", "P");
-//        graph.addEdge("P", "X");
+        graph.addEdge("P", "X");
 
         graph.print();
-        System.out.println(graph.topologicalSort());
+        System.out.println(graph.hasCycle());
     }
 }

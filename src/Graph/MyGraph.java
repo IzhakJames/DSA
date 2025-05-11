@@ -145,6 +145,36 @@ public class MyGraph {
         stack.push(node);
     }
 
+    public boolean hasCycle() {
+        Set<Node> visited = new HashSet<>();
+        Set<Node> visiting = new HashSet<>();
+        boolean hasCycle = false;
+        for (Node node : adjacencyList.keySet()) {
+            hasCycle = hasCycle(node, visited, visiting);
+
+        }
+        return hasCycle;
+    }
+
+    private boolean hasCycle(Node node, Set<Node> visited, Set<Node> visiting) {
+        visiting.add(node);
+        for (Node sourceNode : adjacencyList.get(node)) {
+            if (visited.contains(sourceNode)) {
+                continue;
+            }
+            if (visiting.contains(sourceNode)) {
+                return true;
+            }
+            boolean result = hasCycle(sourceNode, visited, visiting);
+            if (result) {
+                return true;
+            }
+        }
+        visited.add(node);
+        visiting.remove(node);
+        return false;
+    }
+
     public void print() {
         for (Node source : adjacencyList.keySet()) {
             List<Node> adjacent = adjacencyList.get(source);
