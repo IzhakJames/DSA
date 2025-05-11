@@ -1,9 +1,6 @@
 package Graph;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MYWeightedGraph {
 
@@ -64,6 +61,47 @@ public class MYWeightedGraph {
         }
         fromNode.addEdge(toNode, weight);
         toNode.addEdge(fromNode, weight);
+    }
+
+    private class NodeEntry {
+        Node node;
+        int priority;
+        private NodeEntry(Node node, int priority) {
+            this.node = node;
+            this.priority = priority;
+        }
+    }
+
+    public int getShortestDistance(String from, String to) {
+        Node fromNode = nodes.get(from);
+
+        HashMap<Node, Integer> distances = new HashMap<>();
+        for (Node source : nodes.values()) {
+            distances.put(source, Integer.MAX_VALUE);
+        }
+        distances.replace(fromNode,0);
+        HashSet<Node> visited = new HashSet<>();
+
+        PriorityQueue<NodeEntry> pq = new PriorityQueue<NodeEntry>(
+                Comparator.comparingInt(ne -> ne.priority)
+        );
+
+        pq.offer(new NodeEntry(fromNode, 0));
+        while (!pq.isEmpty()) {
+            Node current = pq.poll().node;
+            visited.add(current);
+            for (Edge edge : current.getEdges()) {
+                if (!visited.contains(edge.to)) {
+                    int newDist = distances.get(current) + edge.weight;
+                    if (newDist < distances.get(edge.to)) {
+                        distances.replace(edge.to, newDist);
+                        pq.offer(new NodeEntry(edge.to, newDist));
+                    }
+                }
+
+            }
+        }
+        return distances.get(nodes.get(to));
     }
 
     public void print() {

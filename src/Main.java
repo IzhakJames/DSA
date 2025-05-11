@@ -12,5 +12,6 @@ public class Main {
 //        graph.addEdge("D", "A");
 
         graph.print();
+        System.out.println(graph.getShortestDistance("A","C"));
     }
 }

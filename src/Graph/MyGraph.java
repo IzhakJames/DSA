@@ -73,9 +73,9 @@ public class MyGraph {
     // Pre- Order
     private void traverseDepthFirst(Node node, Set<Node> visited) {
         System.out.println(node.label);
+        visited.add(node);
         for (Node sourceNode : adjacencyList.get(node)){
             if (!visited.contains(sourceNode)) {
-                visited.add(sourceNode);
                 traverseDepthFirst(sourceNode, visited);
             }
         }
@@ -90,11 +90,11 @@ public class MyGraph {
         Set<Node> visited = new HashSet<>();
         stack.push(node);
         while (!stack.isEmpty()) {
-            node = stack.pop();
-            System.out.println(node.label);
-            for (Node sourceNode : adjacencyList.get(node)) {
+            Node current = stack.pop();
+            visited.add(current);
+            System.out.println(current.label);
+            for (Node sourceNode : adjacencyList.get(current)) {
                 if (!visited.contains(sourceNode)) {
-                    visited.add(sourceNode);
                     stack.push(sourceNode);
                 }
             }
@@ -110,11 +110,11 @@ public class MyGraph {
         Set<Node> visited = new HashSet<>();
         queue.offer(node);
         while (!queue.isEmpty()) {
-            node = queue.poll();
-            System.out.println(node.label);
-            for (Node sourceNode : adjacencyList.get(node)) {
+            Node current = queue.poll();
+            visited.add(current);
+            System.out.println(current.label);
+            for (Node sourceNode : adjacencyList.get(current)) {
                 if (!visited.contains(sourceNode)) {
-                    visited.add(sourceNode);
                     queue.offer(sourceNode);
                 }
             }
