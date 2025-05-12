@@ -91,4 +91,14 @@ public class Search {
         }
         return binarySearchRec(arr, target, start, arr.length-1);
     }
+
+    public int exponentialSearch(int[] arr, int target) {
+        int bound = 1;
+        while (bound < arr.length && arr[bound] < target) {
+            bound *= 2;
+        }
+        int left = bound / 2;
+        int right = Math.min(bound, arr.length - 1); // same as : bound > arr.length ? arr.length-1 : bound;
+        return binarySearchRec(arr, target, left, right);
+    }
 }

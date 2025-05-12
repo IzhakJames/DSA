@@ -10,15 +10,15 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-//        int[] arr = {2,8,3,4,6,1,10,7};
-//        QuickSort qs = new QuickSort();
-//        qs.sort(arr);
-//        System.out.println("Sorted array :" + Arrays.toString(arr));
-//
-//        Search searcher = new Search();
-//        System.out.println(searcher.jumpSearch(arr, 15));
+        int[] arr = {2,8,3,4,6,1,10,7};
+        QuickSort qs = new QuickSort();
+        qs.sort(arr);
+        System.out.println("Sorted array :" + Arrays.toString(arr));
 
-        System.out.println(PairCounters.getFibonacci(4));
+        Search searcher = new Search();
+        System.out.println(searcher.exponentialSearch(arr, 5));
+
+//        System.out.println(PairCounters.getFibonacci(4));
 
     }
 }
