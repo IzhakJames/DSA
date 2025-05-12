@@ -46,4 +46,30 @@ public class Search {
             return binarySearchRec(arr, target, mid+1, right);
         }
     }
+
+    public int ternarySearch(int[] arr, int target) {
+        return ternarySearch(arr, target, 0, arr.length - 1);
+    }
+
+    private int ternarySearch(int[] arr, int target, int left, int right) {
+        if (left > right) {
+            return -1;
+        }
+
+        int partition = (right - left) / 3;
+        int mid1 = left+partition;
+        int mid2 = right-partition;
+
+        if (arr[mid1] == target) {
+            return mid1;
+        } else if (arr[mid2] == target) {
+            return mid2;
+        } else if (arr[mid1] > target) { //first partition
+            return ternarySearch(arr, target, left, mid1-1);
+        } else if (arr[mid2] < target) { //last partition
+            return ternarySearch(arr, target, mid2+1, right);
+        } else { //middle partition
+            return ternarySearch(arr, target, mid1+1, mid2-1);
+        }
+    }
 }

@@ -16,7 +16,7 @@ public class Main {
         System.out.println("Sorted array :" + Arrays.toString(arr));
 
         Search searcher = new Search();
-        System.out.println(searcher.binarySearchRec(arr, 1));
+        System.out.println(searcher.ternarySearch(arr, 7));
 
 //        System.out.println(PairCounters.getFibonacci(5));
 
