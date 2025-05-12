@@ -13,12 +13,15 @@ public class Main {
         graph.addEdge("A", "C",1);
         graph.addEdge("B", "C",2);
         graph.print();
-        System.out.println(graph.getShortestDistance("A", "D"));
-        System.out.println(graph.hasCycle());
-        MyWeightedGraph minSpanTree = graph.getMinimumSpanningTree();
+        graph.removeNode("B");
         System.out.println();
-        minSpanTree.print();
-        System.out.println(minSpanTree.getShortestDistance("A", "D"));
-        System.out.println(minSpanTree.hasCycle());
+        graph.print();
+//        System.out.println(graph.getShortestDistance("A", "D"));
+//        System.out.println(graph.hasCycle());
+//        MyWeightedGraph minSpanTree = graph.getMinimumSpanningTree();
+//        System.out.println();
+//        minSpanTree.print();
+//        System.out.println(minSpanTree.getShortestDistance("A", "D"));
+//        System.out.println(minSpanTree.hasCycle());
     }
 }

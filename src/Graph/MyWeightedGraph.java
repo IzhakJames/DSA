@@ -17,6 +17,10 @@ public class MyWeightedGraph {
             edges.add(new Edge(this, to, weight));
         }
 
+        public void removeEdge(Node to) {
+            edges.removeIf(e -> e.to == to);
+        }
+
         public List<Edge> getEdges() {
             return edges;
         }
@@ -61,6 +65,33 @@ public class MyWeightedGraph {
         }
         fromNode.addEdge(toNode, weight);
         toNode.addEdge(fromNode, weight);
+    }
+
+    public void removeNode(String label) {
+        if (!nodes.containsKey(label)) {
+            return;
+        }
+        Node targetNode = nodes.get(label);
+        for (Node node : nodes.values()) {
+            if (node.equals(targetNode)) {
+                continue;
+            }
+            node.removeEdge(targetNode);
+        }
+        nodes.remove(label);
+    }
+
+    public void removeEdge(String from, String to) {
+        Node fromNode = nodes.get(from);
+        if (fromNode == null) {
+            throw new IllegalArgumentException("Node " + from + " does not exist");
+        }
+        Node toNode = nodes.get(to);
+        if (toNode == null) {
+            throw new IllegalArgumentException("Node " + to + " does not exist");
+        }
+        fromNode.removeEdge(toNode);
+        toNode.removeEdge(fromNode);
     }
 
     private class NodeEntry {
