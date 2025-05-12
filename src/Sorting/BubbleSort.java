@@ -1,5 +1,7 @@
 package Sorting;
 
+
+// Best case : o(n) , worst case : o(n^2)
 public class BubbleSort {
     public void sort(int[] array) {
         int n = array.length;

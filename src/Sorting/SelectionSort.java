@@ -1,5 +1,6 @@
 package Sorting;
 
+// Best case : o(n^2) , worst case : o(n^2)
 public class SelectionSort {
     public void sort(int[] arr) {
         int n = arr.length;
