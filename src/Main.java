@@ -1,5 +1,6 @@
 
 import Linear.util.PairCounters;
+import Searching.Search;
 import Sorting.InsertionSort;
 import Sorting.MergeSort;
 import Sorting.QuickSort;
@@ -14,7 +15,10 @@ public class Main {
         qs.sort(arr);
         System.out.println("Sorted array :" + Arrays.toString(arr));
 
-        System.out.println(PairCounters.getFibonacci(5));
+        Search searcher = new Search();
+        System.out.println(searcher.binarySearchRec(arr, 1));
+
+//        System.out.println(PairCounters.getFibonacci(5));
 
     }
 }
