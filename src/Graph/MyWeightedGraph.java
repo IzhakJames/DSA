@@ -130,9 +130,13 @@ public class MyWeightedGraph {
     }
 
     public boolean hasCycle() {
-        Node first = nodes.values().iterator().next();
         HashSet<Node> visited = new HashSet<>();
-        if (hasCycle(first, visited, first)) return true;
+        // Need to loop through all the loops in case it is an undirected graph with two separate sections
+        for (Node node :  nodes.values()) {
+            if (!visited.contains(node)) {
+                if (hasCycle(node, visited, node)) return true;
+            }
+        }
 
         return false;
     }
