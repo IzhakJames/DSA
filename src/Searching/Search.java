@@ -72,4 +72,23 @@ public class Search {
             return ternarySearch(arr, target, mid1+1, mid2-1);
         }
     }
+
+    // searching by blocks, blockSize = square root of n
+    public int jumpSearch(int[] arr, int target) {
+        int blockSize = (int) Math.sqrt(arr.length);
+        System.out.println("Using block size : " + blockSize);
+        int start = 0;
+        int end = blockSize;
+        while (end < arr.length) {
+            if (arr[end] == target) {
+                return end;
+            } else if (arr[end] > target) {
+                return binarySearchRec(arr, target, start,end-1);
+            } else {
+                start = end;
+                end += blockSize;
+            }
+        }
+        return binarySearchRec(arr, target, start, arr.length-1);
+    }
 }

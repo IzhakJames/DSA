@@ -38,12 +38,25 @@ public class PairCounters {
         if (n == 0 || n == 1) {
             return 1;
         }
-        int[] dp = new int[n+1];
-        dp[1] = 1;
-        for (int i = 2; i < n+1; i++) {
-            dp[i] = dp[i-1] + dp[i-2];
+        int oneStepBefore = 1;
+        int twoStepBefore = 0;
+        int result = 0;
+        for (int i = 0; i < n; i++) {
+            result = oneStepBefore + twoStepBefore;
+            twoStepBefore = oneStepBefore;
+            oneStepBefore = result;
         }
-        return dp[n];
+
+//          The one below is also okay
+//        int prev1 = 1, prev2 = 1;
+//        for (int i = 2; i <= n; i++) {
+//            int current = prev1 + prev2;
+//            prev2 = prev1;
+//            prev1 = current;
+//        }
+//
+//        return prev1;
+        return result;
     }
 }
 
