@@ -151,7 +151,44 @@ public class MyWeightedGraph {
         return false;
     }
 
+    public MyWeightedGraph getMinimumSpanningTree() {
+        if (nodes.isEmpty()) return null;
+
+        MyWeightedGraph graph = new MyWeightedGraph();
+        PriorityQueue<Edge> edges = new PriorityQueue<>(
+                Comparator.comparingInt(e -> e.weight)
+        );
+
+        Node first = nodes.values().iterator().next();
+        edges.addAll(first.getEdges());
+        graph.addNode(first.label);
+        while (graph.nodes.size() < nodes.size()) {
+            if (edges.isEmpty()) {
+                return graph;
+            }
+            Edge edge = edges.poll(); // Minimum edge
+            Node minNode = edge.to;
+            if (graph.containsNode(minNode.label)) {
+                continue;
+            }
+            graph.addNode(minNode.label);
+            graph.addEdge(edge.from.label, minNode.label, edge.weight);
+            for (Edge nextEdge : minNode.getEdges()) {
+                if (!graph.containsNode(nextEdge.to.label)) {
+                    edges.add(nextEdge);
+                }
+            }
+        }
+
+        return graph;
+    }
+
+    public boolean containsNode(String label) {
+        return nodes.containsKey(label);
+    }
+
     public void print() {
+        if (nodes.isEmpty()) return;
         for (Node source : nodes.values()) {
             List<Edge> adjacent = source.getEdges();
             System.out.println(source+ " is connected to " + adjacent);
