@@ -125,23 +125,32 @@ public class StringUtil {
         if (word1.length() != word2.length()) {
             return false;
         }
-        Map<Character, Integer> word1map = new HashMap<>();
-        Map<Character, Integer> word2map = new HashMap<>();
-        for (char c : word1.toCharArray()) {
-            word1map.put(c, word1map.getOrDefault(c,0)+1);
-        }
-        for (char c : word2.toCharArray()) {
-            word2map.put(c, word2map.getOrDefault(c,0)+1);
-        }
-        for (char c : word1.toCharArray()) {
-            if (word1map.get(c) == null || word2map.get(c) == null) {
-                return false;
-            }
-            if (!word1map.get(c).equals(word2map.get(c))) {
-                return false;
-            }
-        }
-        return true;
+        char[] array1 = word1.toCharArray();
+        char[] array2 = word2.toCharArray();
+
+        Arrays.sort(array1);
+        Arrays.sort(array2);
+
+        return Arrays.equals(array1, array2);
+
+
+//        Map<Character, Integer> word1map = new HashMap<>();
+//        Map<Character, Integer> word2map = new HashMap<>();
+//        for (char c : word1.toCharArray()) {
+//            word1map.put(c, word1map.getOrDefault(c,0)+1);
+//        }
+//        for (char c : word2.toCharArray()) {
+//            word2map.put(c, word2map.getOrDefault(c,0)+1);
+//        }
+//        for (char c : word1.toCharArray()) {
+//            if (word1map.get(c) == null || word2map.get(c) == null) {
+//                return false;
+//            }
+//            if (!word1map.get(c).equals(word2map.get(c))) {
+//                return false;
+//            }
+//        }
+//        return true;
     }
 
     public static boolean isPalindrome(String word) {
