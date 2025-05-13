@@ -1,24 +1,30 @@
 
-import Linear.util.PairCounters;
-import Searching.Search;
-import Sorting.InsertionSort;
-import Sorting.MergeSort;
-import Sorting.QuickSort;
+import StringManipulations.StringUtil;
 
 
 import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        int[] arr = {2,8,3,4,6,1,10,7};
-        QuickSort qs = new QuickSort();
-        qs.sort(arr);
-        System.out.println("Sorted array :" + Arrays.toString(arr));
+        String word = "Trees are beautiful";
+        System.out.println(StringUtil.countVowels(word));
+        System.out.println(StringUtil.reverseString(word));
+        System.out.println(StringUtil.reverseWordOrder(word));
 
-        Search searcher = new Search();
-        System.out.println(searcher.exponentialSearch(arr, 5));
+        String word1 = "ABBA";
+        String word2 = "ADCB";
+        System.out.println(StringUtil.isRotatedStrings(word1,word2));
+        System.out.println(StringUtil.isAnagrams(word1, word2));
+        System.out.println(StringUtil.isPalindrome(word1));
 
-//        System.out.println(PairCounters.getFibonacci(4));
+        String longWord = "Hellllllllloooo";
+        System.out.println(StringUtil.removeDuplicates(longWord));
+        System.out.println(StringUtil.getMostRepeated(longWord));
+
+        String badSentence = " trees     are beautiful ";
+        System.out.println(StringUtil.fixSentence(badSentence));
+
+
 
     }
 }
