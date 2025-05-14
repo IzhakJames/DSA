@@ -89,12 +89,13 @@ public class MyGraph {
         Stack<Node> stack = new Stack<>();
         Set<Node> visited = new HashSet<>();
         stack.push(node);
+        visited.add(node);
         while (!stack.isEmpty()) {
             Node current = stack.pop();
-            visited.add(current);
             System.out.println(current.label);
             for (Node sourceNode : adjacencyList.get(current)) {
                 if (!visited.contains(sourceNode)) {
+                    visited.add(current);
                     stack.push(sourceNode);
                 }
             }
@@ -109,12 +110,13 @@ public class MyGraph {
         Queue<Node> queue = new LinkedList<>();
         Set<Node> visited = new HashSet<>();
         queue.offer(node);
+        visited.add(node);
         while (!queue.isEmpty()) {
             Node current = queue.poll();
-            visited.add(current);
             System.out.println(current.label);
             for (Node sourceNode : adjacencyList.get(current)) {
                 if (!visited.contains(sourceNode)) {
+                    visited.add(current);
                     queue.offer(sourceNode);
                 }
             }
