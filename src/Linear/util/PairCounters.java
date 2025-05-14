@@ -21,11 +21,10 @@ public class PairCounters {
     public static int[] twoSum(int[] arr, int target) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < arr.length; i++) {
-            map.put(arr[i], i);
-        }
-        for (int num : arr) {
-            if (map.containsKey(target - num)) {
-                return new int[]{map.get(num), map.get(target - num)};
+            if (!map.containsKey(target - arr[i]))
+                map.put(arr[i], i);
+            else {
+                return new int[]{map.get(target - arr[i]), map.get(i)};
             }
         }
         return null;

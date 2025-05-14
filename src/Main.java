@@ -1,30 +1,18 @@
 
-import StringManipulations.StringUtil;
-
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import static StringManipulations.StringUtil.lengthOfLongestSubstring;
 
 public class Main {
     public static void main(String[] args) {
-        String word = "Trees are beautiful";
-        System.out.println(StringUtil.countVowels(word));
-        System.out.println(StringUtil.reverseString(word));
-        System.out.println(StringUtil.reverseWordOrder(word));
-
-        String word1 = "ABBA";
-        String word2 = "ADCB";
-        System.out.println(StringUtil.isRotatedStrings(word1,word2));
-        System.out.println(StringUtil.isAnagrams(word1, word2));
-        System.out.println(StringUtil.isPalindrome(word1));
-
-        String longWord = "Hellllllllloooo";
-        System.out.println(StringUtil.removeDuplicates(longWord));
-        System.out.println(StringUtil.getMostRepeated(longWord));
-
-        String badSentence = " trees     are beautiful ";
-        System.out.println(StringUtil.fixSentence(badSentence));
-
-
-
+        System.out.println(lengthOfLongestSubstring("abcabcbb")); // Output: 3 ("abc")
+        System.out.println(lengthOfLongestSubstring("bbbbb"));    // Output: 1 ("b")
+        System.out.println(lengthOfLongestSubstring("pwwkew"));   // Output: 3 ("wke")
+        System.out.println(lengthOfLongestSubstring(""));         // Output: 0
     }
+
+
 }

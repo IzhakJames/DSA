@@ -152,6 +152,22 @@ public class StringUtil {
 //        }
 //        return true;
     }
+    public static int lengthOfLongestSubstring(String string) {
+        Set<Character> characterSet = new HashSet<>();
+        int left = 0;
+        int max = 0;
+        for (int right=0; right<string.length();right++) {
+            char current = string.charAt(right);
+            while (characterSet.contains(current)) {
+                characterSet.remove(string.charAt(left));
+                left++;
+            }
+
+            characterSet.add(current);
+            max = Math.max(max, right - left + 1);
+        }
+        return max;
+    }
 
     public static boolean isPalindrome(String word) {
         char[] arr = word.toCharArray();
