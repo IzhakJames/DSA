@@ -24,7 +24,7 @@ public class PairCounters {
             if (!map.containsKey(target - arr[i]))
                 map.put(arr[i], i);
             else {
-                return new int[]{map.get(target - arr[i]), map.get(i)};
+                return new int[]{map.get(target - arr[i]), i};
             }
         }
         return null;
