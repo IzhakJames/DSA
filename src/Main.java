@@ -1,11 +1,12 @@
-import Linear.util.PairCounters;
+import LeetCode.arrays.*;
 
 import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        int[] arr = {7,5,2,1,6,8};
-        System.out.println(Arrays.toString(PairCounters.twoSum(arr,15)));
+        MinimumTimeVisitingAllPoints solution = new MinimumTimeVisitingAllPoints();
+        int[][] arr = {{1,1}, {3,4}, {-1,0}};
+        System.out.println(solution.solutionQ1266(arr));
     }
 
 }
