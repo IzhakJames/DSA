@@ -11,7 +11,7 @@ public class Main {
                 {'0', '1', '0'},
                 {'1', '1', '1'}
         };
-        System.out.println(solution.solutionQ200(grid));
+        System.out.println(solution.solutionBfsQ200(grid));
 
     }
 

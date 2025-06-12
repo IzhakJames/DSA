@@ -4,6 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 public class NumberOfIslands {
+    // FASTER
     public int solutionQ200(char[][] grid) {
         int row = grid.length;
         int col = grid[0].length;
@@ -32,6 +33,7 @@ public class NumberOfIslands {
         dfs(grid, row, col-1);
     }
 
+    // SLOWER
     public int solutionBfsQ200(char[][] grid) {
         int row = grid.length;
         int col = grid[0].length;
@@ -41,19 +43,28 @@ public class NumberOfIslands {
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 if (grid[i][j] == '1') {
+                    grid[i][j] = '0';
                     queue.add(new int[]{i, j});
                     while (!queue.isEmpty()) {
                         int[] curr = queue.poll();
                         int r = curr[0];
                         int c = curr[1];
-                        if (r >= grid.length || r < 0 || c >= grid[0].length || c < 0 || grid[r][c] == '0') {
-                            continue;
+                        if (r + 1 < grid.length && grid[r+1][c] == '1') {
+                            grid[r + 1][c] = '0';
+                            queue.add(new int[]{r + 1, c});
                         }
-                        grid[r][c] = '0';
-                        queue.add(new int[]{r + 1, c});
-                        queue.add(new int[]{r - 1, c});
-                        queue.add(new int[]{r, c + 1});
-                        queue.add(new int[]{r, c - 1});
+                        if (r - 1 >= 0 && grid[r-1][c] == '1') {
+                            grid[r - 1][c] = '0';
+                            queue.add(new int[]{r - 1, c});
+                        }
+                        if (c + 1 < grid[0].length && grid[r][c+1] == '1') {
+                            grid[r][c + 1] = '0';
+                            queue.add(new int[]{r, c + 1});
+                        }
+                        if (c - 1 >= 0 && grid[r][c-1] == '1') {
+                            grid[r][c - 1] = '0';
+                            queue.add(new int[]{r, c - 1});
+                        }
                     }
                     result += 1;
                 }
