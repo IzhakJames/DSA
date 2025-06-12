@@ -4,9 +4,15 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        MinimumTimeVisitingAllPoints solution = new MinimumTimeVisitingAllPoints();
-        int[][] arr = {{1,1}, {3,4}, {-1,0}};
-        System.out.println(solution.solutionQ1266(arr));
+        NumberOfIslands solution = new NumberOfIslands();
+//        int[][] arr = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}};
+        char[][] grid = {
+                {'1', '1', '1'},
+                {'0', '1', '0'},
+                {'1', '1', '1'}
+        };
+        System.out.println(solution.solutionQ200(grid));
+
     }
 
 }
