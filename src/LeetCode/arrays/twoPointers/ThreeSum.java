@@ -19,7 +19,7 @@ public class ThreeSum {
                 if (diff < 0)
                     left++;
                 else if (diff > 0)
-                    right++;
+                    right--;
                 else {
                     result.add(Arrays.asList(num1,nums[left],nums[right]));
                     left++;
