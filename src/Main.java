@@ -1,5 +1,6 @@
 import LeetCode.arrays.*;
 import LeetCode.arrays.twoPointers.BestTimeToBuyStock;
+import LeetCode.arrays.twoPointers.LongestMountainInArray;
 import LeetCode.arrays.twoPointers.SquaresOfSortedArr;
 import LeetCode.arrays.twoPointers.ThreeSum;
 
@@ -8,10 +9,10 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        ThreeSum solution = new ThreeSum();
-        int[] arr = {-1,0,1,2,-1,-4};
+        LongestMountainInArray solution = new LongestMountainInArray();
+        int[] arr = {2,2,2,2};
 
-        System.out.println( solution.solutionQ15(arr));
+        System.out.println( solution.solutionQ845(arr));
 
 
     }
