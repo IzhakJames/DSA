@@ -1,14 +1,18 @@
 import LeetCode.arrays.*;
 import LeetCode.arrays.twoPointers.BestTimeToBuyStock;
 import LeetCode.arrays.twoPointers.SquaresOfSortedArr;
+import LeetCode.arrays.twoPointers.ThreeSum;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        SquaresOfSortedArr solution = new SquaresOfSortedArr();
-        int[] arr = {-7,-4,-2};
-        System.out.println(Arrays.toString(solution.solutionQ977(arr)));
+        ThreeSum solution = new ThreeSum();
+        int[] arr = {0,0,0,0,0};
+
+        System.out.println( solution.solutionQ15(arr));
+
 
     }
 

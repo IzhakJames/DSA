@@ -3,17 +3,12 @@ package LeetCode.arrays.twoPointers;
 public class SquaresOfSortedArr {
     public int[] solutionQ977(int[] nums) {
         int[] result = new int[nums.length];
-        int left = 0;
-        int right = 0;
+        int left = nums.length-1;
+        int right = nums.length;
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] >= 0) {
                 left = i-1;
                 right = i;
-                break;
-            }
-            if (i == nums.length-1 && nums[i] < 0) {
-                left = i;
-                right = i+1;
                 break;
             }
         }
