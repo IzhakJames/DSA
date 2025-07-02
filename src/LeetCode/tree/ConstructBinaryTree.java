@@ -2,7 +2,7 @@ package LeetCode.tree;
 
 import Linear.util.PairCounters;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class ConstructBinaryTree {
     public class TreeNode {
@@ -141,6 +141,54 @@ public class ConstructBinaryTree {
             rootNode.right = bstFromPreorder(Arrays.copyOfRange(preorder, partition, preorder.length));
         }
         return rootNode;
+    }
+
+    public List<Integer> solutionQ863(TreeNode root, TreeNode target, int k) {
+        Map<TreeNode, TreeNode> parents = new HashMap<>();
+        getParentNodes(root, null, parents);
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        Set<TreeNode> visited = new HashSet<>();
+
+        queue.add(target);
+        visited.add(target);
+        int dept = 0;
+
+        List<Integer> result = new ArrayList<>();
+
+        while (!queue.isEmpty() && dept != k) {
+            dept++;
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode curr = queue.poll();
+                if (curr.left != null && !visited.contains(curr.left)) {
+                    queue.add(curr.left);
+                    visited.add(curr.left);
+                    if (dept == k) result.add(curr.left.val);
+                }
+                if (curr.right != null && !visited.contains(curr.right)) {
+                    queue.add(curr.right);
+                    visited.add(curr.right);
+                    if (dept == k) result.add(curr.right.val);
+                }
+                TreeNode currParent = parents.get(curr);
+                if (currParent != null && !visited.contains(currParent)) {
+                    queue.add(currParent);
+                    visited.add(currParent);
+                    if (dept == k) result.add(currParent.val);
+                }
+            }
+        }
+        return result;
+    }
+
+    private void getParentNodes(TreeNode node, TreeNode parent, Map<TreeNode, TreeNode> parents) {
+        if (node == null) {
+            return;
+        }
+        parents.put(node, parent);
+        getParentNodes(node.left, node, parents);
+        getParentNodes(node.right, node, parents);
     }
 }
 
