@@ -34,7 +34,7 @@ public class MyAVLTree {
         return node;
     }
     private void setHeight(AVLNode node) {
-        node.height = Math.max(height(node.left), height(node.right)) + 1;
+        node.height = Math.max(getHeight(node.left), getHeight(node.right)) + 1;
     }
 
     private AVLNode balance(AVLNode node) {
@@ -63,12 +63,12 @@ public class MyAVLTree {
         return node;
     }
 
-    private int height(AVLNode node) {
+    private int getHeight(AVLNode node) {
         return node == null ? -1 : node.height;
     }
 
     private int balanceFactor(AVLNode node) {
-        return node == null ? 0 : height(node.left) - height(node.right);
+        return node == null ? 0 : getHeight(node.left) - getHeight(node.right);
     }
 
     private boolean isLeftHeavy(AVLNode node) {
